@@ -3,6 +3,8 @@
 0-main
 """
 def pascal_triangle(lvl):
+    """Generates a matrix of the pascal triangle
+    """
     if lvl <= 0:
         return []
     elif lvl == 1:
