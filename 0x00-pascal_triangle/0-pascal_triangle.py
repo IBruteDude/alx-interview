@@ -2,9 +2,6 @@
 """
 0-main
 """
-import itertools as it
-
-
 def pascal_triangle(lvl):
     if lvl <= 0:
         return []
