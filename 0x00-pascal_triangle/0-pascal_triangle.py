@@ -13,7 +13,7 @@ def pascal_triangle(lvl):
     triangle = [[1], [1, 1]]
     while lvl > 2:
         triangle.append([1])
-        for (x, y) in it.pairwise(triangle[-2]):
+        for (x, y) in zip(triangle[-2][0:-1], triangle[-2][1:]):
             triangle[-1].append(x + y)
         triangle[-1].append(1)
         lvl -= 1
