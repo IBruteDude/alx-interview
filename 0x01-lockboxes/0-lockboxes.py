@@ -15,15 +15,14 @@ def canUnlockAll(boxes):
 
     slots[0] = True
     for key in boxes[0]:
-        slots[key] = True
-        q.put(key)
+        if key < len(boxes):
+            slots[key] = True
+            q.put(key)
 
     while not q.empty():
-        opening_key = q.get()
-        if opening_key < len(boxes):
-            for key in boxes[opening_key]:
-                if not slots[key]:
-                    slots[key] = True
-                    q.put(key)
+        for key in boxes[q.get()]:
+            if key < len(boxes) and not slots[key]:
+                slots[key] = True
+                q.put(key)
 
     return all(slots)
