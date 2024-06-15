@@ -11,6 +11,8 @@ def minOperations(n: int) -> int:
         return 0
 
     for i in range(2, n + 1):
+        if n <= 1:
+            break
         if n % i == 0:
             op_count += i
             n //= i
@@ -21,7 +23,7 @@ def minOperations(n: int) -> int:
 
 
 if __name__ == '__main__':
-    n = 13
+    n = 2147483640
     print(f"Min # of operations to reach {n} char: {minOperations(n)}")
 
     n = 12
