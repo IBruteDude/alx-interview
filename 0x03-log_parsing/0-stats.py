@@ -27,6 +27,8 @@ def print_stats() -> None:
     for code, count in sorted(status_codes.items(), key=lambda s: int(s[0])):
         if count:
             print(f"{code}: {count}", flush=True)
+    global itercount
+    itercount = 0
 
 
 signal.signal(signal.SIGINT, lambda *_: print_stats())
