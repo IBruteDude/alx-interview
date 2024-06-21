@@ -31,23 +31,17 @@ def print_stats() -> None:
     itercount = 0
 
 
-signal.signal(signal.SIGINT, lambda *_: print_stats())
-
-
-try:
-    for line in sys.stdin:
-        itercount += 1
-        if line is None:
-            continue
-        m = re.match(r"""(\d*.\d*.\d*.\d*) - \[(.*)\] \"GET /projects/260 HTTP/1.1\" (\d*) (\d*)""", line)
-        if m is None:
-            continue
-        ipaddr, date, status_code, size = m.groups()
-        if status_code in status_codes:
-            status_codes[status_code] += 1
-        file_size += int(size)
-        if itercount == 10:
-            print_stats()
-            itercount = 0
-except KeyboardInterrupt:
-    print_stats()
+for line in sys.stdin:
+    itercount += 1
+    if line is None:
+        continue
+    m = re.match(r"""(\d*.\d*.\d*.\d*) - \[(.*)\] \"GET /projects/260 HTTP/1.1\" (\d*) (\d*)""", line)
+    if m is None:
+        continue
+    ipaddr, date, status_code, size = m.groups()
+    if status_code in status_codes:
+        status_codes[status_code] += 1
+    file_size += int(size)
+    if itercount == 10:
+        print_stats()
+        itercount = 0
