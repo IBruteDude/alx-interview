@@ -20,7 +20,7 @@ status_codes = {
 }
 
 
-def print_stats() -> None:
+def print_stats(*_) -> None:
     """ print the current stats
     """
     print(f"File size: {file_size}", flush=True)
@@ -30,6 +30,7 @@ def print_stats() -> None:
     global itercount
     itercount = 0
 
+signal.signal(signal.SIGINT, print_stats)
 
 for line in sys.stdin:
     itercount += 1
