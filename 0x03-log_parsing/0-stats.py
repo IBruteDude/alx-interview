@@ -30,13 +30,16 @@ def print_stats(*_) -> None:
     global itercount
     itercount = 0
 
+
 signal.signal(signal.SIGINT, print_stats)
+
 
 for line in sys.stdin:
     itercount += 1
     if line is None:
         continue
-    m = re.match(r"""(\d*.\d*.\d*.\d*) - \[(.*)\] \"GET /projects/260 HTTP/1.1\" (\d*) (\d*)""", line)
+    m = re.match(r"""(\d*.\d*.\d*.\d*) - \[(.*)\] """
+                 r"""\"GET /projects/260 HTTP/1.1\" (\d*) (\d*)""", line)
     if m is None:
         continue
     ipaddr, date, status_code, size = m.groups()
