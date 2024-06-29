@@ -10,6 +10,7 @@ def validUTF8(data: List[int]) -> bool:
     i = 0
     ln = len(data)
     def utf8_tail(b: int) -> bool: return 0x80 <= b <= 0xBF
+    data = [b & 0b11111111 for b in data]
     while i < ln:
         if data[i] & 0b10000000 == 0:
             i += 1
@@ -55,6 +56,8 @@ def validUTF8(data: List[int]) -> bool:
             else:
                 return False
             i += 4
+        else:
+            return False
     return True
 
 
@@ -67,4 +70,10 @@ if __name__ == '__main__':
     print(validUTF8(data))
 
     data = [229, 65, 127, 256]
+    print(validUTF8(data))
+
+    data = [467, 133, 108]
+    print(validUTF8(data))
+
+    data = [250, 145, 145, 145, 145]
     print(validUTF8(data))
