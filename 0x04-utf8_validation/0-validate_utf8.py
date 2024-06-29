@@ -10,6 +10,7 @@ def validUTF8(data: List[int]) -> bool:
     i = 0
     ln = len(data)
     def utf8_tail(b: int) -> bool: return 0x80 <= b <= 0xBF
+
     data = [b & 0b11111111 for b in data]
     while i < ln:
         if data[i] & 0b10000000 == 0:
