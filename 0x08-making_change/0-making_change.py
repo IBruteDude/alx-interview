@@ -4,12 +4,12 @@
 from typing import List, Dict
 
 
-def _makeChange(coins: List[int], total: int, minCoin: int, memo: List[int]) -> int:
+def _makeChange(coins: List[int], total: int, minCoin: int, memo: Dict[int, int]) -> int:
 	"""Recursive dp coin change function
 	"""
 	if total < 0: return -1
 	if total == 0: return 0
-	if memo[total] != 0: return memo[total]
+	if memo.get(total, None) is not None: return memo[total]
 
 	minCount = -1 # the reasonable max
 	for coin in coins:
@@ -28,7 +28,7 @@ def makeChange(coins: List[int], total: int) -> int:
 	"""Coin change solver
 	"""
 	if total <= 0: return 0
-	return _makeChange(coins, total, min(coins), [0] * (total + 1))
+	return _makeChange(coins, total, min(coins), {0: 0})
 
 
 if __name__ == '__main__':
