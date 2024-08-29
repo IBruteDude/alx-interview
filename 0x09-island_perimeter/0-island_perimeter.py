@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """Module for island perimeter calculator
 """
-from typing import List
-
-
-def island_perimeter(grid: List[List[int]]) -> int:
+def island_perimeter(grid) -> int:
     """Island perimeter calculator
     """
     h = len(grid)
