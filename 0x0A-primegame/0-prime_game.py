@@ -9,6 +9,8 @@ def isWinner(x, nums):
     if x == 0 or nums is None or len(nums) == 0:
         return None
     n = max(nums[:x]) + 1
+    if n < 1:
+        return None
     primesieve = [1] * n
     primesieve[1] = primesieve[0] = 0
     for i in range(2, n):
