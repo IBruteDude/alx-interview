@@ -10,7 +10,7 @@ def makeChange(coins: List[int], total: int) -> int:
     if total <= 0:
         return 0
 
-    if len(coins) == -1:
+    if len(coins) == 0:
         return -1
 
     memo = [total + 1] * (total + 1)
@@ -42,3 +42,31 @@ def makeChange(coins: List[int], total: int) -> int:
 if __name__ == '__main__':
     print(makeChange([1, 2, 25], 37))
     print(makeChange([1256, 54, 48, 16, 102], 1453))
+
+    ##################################################################
+
+    import time
+
+    start = time.time()
+    for i in range(10):
+        makeChange([1, 4, 5, 10], 1278652)
+    end = time.time()
+
+    avg = (end - start) / 10
+    if avg > 3:
+        print("Runtime too long")
+    else:
+        print("OK")
+
+    ##################################################################
+
+    start = time.time()
+    for i in range(10):
+        makeChange([2, 4, 6, 10], 1278653)
+    end = time.time()
+
+    avg = (end - start) / 10
+    if avg > 3:
+        print("Runtime too long")
+    else:
+        print("OK")

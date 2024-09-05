@@ -6,6 +6,8 @@
 def isWinner(x, nums):
     """ Prime counting contest
     """
+    if x == 0 or nums is None or len(nums) == 0:
+        return None
     n = max(nums[:x]) + 1
     primesieve = [1] * n
     primesieve[1] = primesieve[0] = 0
